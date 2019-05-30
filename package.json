@@ -1,0 +1,9 @@
+{
+  "name": "ngx-formster",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jonathanwoahn/ngx-formster",
+  "peerDependencies": {
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0"
+  }
+}
