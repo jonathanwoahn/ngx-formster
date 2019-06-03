@@ -1,3 +1,23 @@
-<p>
-  form-array works!
-</p>
+<div [ngClass]="options.class" [formGroup]="formGroup">
+  <div>
+    <span [innerHtml]="options.label" *ngIf="options.label"></span>
+  </div>
+  {{formGroup.controls[config.key].value | json}}
+  <div *ngFor="let group of formArray; let i = index;"
+    style="display: flex; flex-direction: row; align-items: center;"
+    formArrayName="{{config.key}}">
+    <div [formGroupName]="i" style="flex: 1;">
+      <ngx-formster [config]="config.fields" [formGroup]="group"></ngx-formster>
+    </div>
+    <div>
+      <button class="btn-small btn-floating waves-effect" (click)="removeField(i)" type="button">
+        <i class="material-icons">close</i>
+      </button>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: row; justify-content: center;">
+    <button (click)="addField()" class="btn-small btn-floating waves-effect" type="button">
+      <i class="material-icons">add</i>
+    </button>
+  </div>
+</div>

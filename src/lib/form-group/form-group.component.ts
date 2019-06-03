@@ -1,16 +1,17 @@
 import { NgxFormsterFormGroupConfig } from '../ngx-formster-models';
 import { BaseFormElementComponent } from './../base-form-element/base-form-element.component';
-import { Component, OnInit, Input } from '@angular/core';
-import { NgxFormsterElementConfig } from '../ngx-formster-models';
-import { FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'lib-form-group',
   template: `
-    <ngx-formster
-      [config]="config.fields"
-      [formGroup]="formGroup?.controls[config.key]">
-    </ngx-formster>
+    <div [ngClass]="options.class">
+      <span [innerHtml]="options.label" *ngIf="options.label"></span>
+      <ngx-formster
+        [config]="config.fields"
+        [formGroup]="formGroup?.controls[config.key]">
+      </ngx-formster>
+    </div>
   `,
 })
 export class FormGroupComponent extends BaseFormElementComponent {
