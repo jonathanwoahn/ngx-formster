@@ -37,6 +37,7 @@ export interface NgxFormsterElementBase {
    * Function that allows for logic to determine when / if the field should be displayed
    */
   hidden?: (formGroup: FormGroup, config: NgxFormsterElementBase) => boolean;
+  postProcessing?: (formGroup: FormGroup, config: NgxFormsterElementBase) => any;
 }
 
 export interface NgxFormsterFormGroupConfig extends NgxFormsterElementBase {

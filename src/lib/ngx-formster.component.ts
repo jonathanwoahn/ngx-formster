@@ -7,7 +7,7 @@ import { EventEmitter } from 'events';
 @Component({
   selector: 'ngx-formster',
   template: `
-    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+    <form [formGroup]="formGroup" (ngSubmit)="submit()" novalidate>
       <ng-template
         ngxFormster
         *ngFor="let item of config$ | async"
@@ -28,7 +28,7 @@ export class NgxFormsterComponent {
   config$: BehaviorSubject<NgxFormsterElementConfig[]> = new BehaviorSubject([]);
 
   submit(): void {
-    console.log(this.formGroup.value);
     this.onSubmit.emit(this.formGroup.value);
+    console.log(this.formGroup.value);
   }
 }

@@ -1,7 +1,7 @@
 import { FormArray, FormGroup } from '@angular/forms';
-import { NgxFormsterFormArrayConfig } from './../../../../../dist/ngx-formster/lib/ngx-formster-models.d';
 import { Component, OnInit } from '@angular/core';
 import { BaseFormElementComponent } from '../base-form-element/base-form-element.component';
+import { NgxFormsterFormArrayConfig } from '../ngx-formster-models';
 
 @Component({
   selector: 'lib-form-array',
