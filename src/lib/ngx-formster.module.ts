@@ -10,11 +10,13 @@ import { NGX_FORMSTER } from './ngx-formster-models';
 import { NgxFormsterComponentFactoryService } from './ngx-formster-component-factory.service';
 import { NgxFormsterErrorMessageComponent } from './ngx-formster-error-message/ngx-formster-error-message.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormConstantComponent } from './form-constant/form-constant.component';
 
 const COMPONENTS = [
   FormArrayComponent,
   FormGroupComponent,
   BaseFormElementComponent,
+  FormConstantComponent,
 ];
 
 @NgModule({

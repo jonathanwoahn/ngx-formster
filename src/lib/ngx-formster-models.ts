@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 export const NGX_FORMSTER = new InjectionToken <NgxFormsterComponentProvider[]>('NGX_FORMSTER');
 export type NgxFormsterTypes = 'formGroup' | 'formArray' | 'input' | 'switch'
-  | 'select' | 'range' | 'radio' | 'checkbox' | 'textarea' | 'autocomplete';
+  | 'select' | 'range' | 'radio' | 'checkbox' | 'textarea' | 'autocomplete' | 'constant';
 export class NgxFormsterComponentProvider {
   protected library: ComponentLibrary[] = [];
 

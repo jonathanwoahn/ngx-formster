@@ -59,7 +59,6 @@ export class NgxFormsterDirective implements OnInit, OnDestroy {
   }
 
   private getControl(config: NgxFormsterElementConfig) {
-    console.log(this.formGroup, this.config);
     switch (config.type) {
       case ('formGroup'):
         return new FormGroup({});

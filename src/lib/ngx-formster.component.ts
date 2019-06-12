@@ -1,8 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgxFormsterElementConfig } from './ngx-formster-models';
 import { FormGroup } from '@angular/forms';
-import { EventEmitter } from 'events';
 
 @Component({
   selector: 'ngx-formster',
@@ -28,7 +27,12 @@ export class NgxFormsterComponent {
   config$: BehaviorSubject<NgxFormsterElementConfig[]> = new BehaviorSubject([]);
 
   submit(): void {
-    this.onSubmit.emit(this.formGroup.value);
-    console.log(this.formGroup.value);
+    const value = this.formGroup.value;
+    const res = this.config$.getValue().reduce((result: object, config: NgxFormsterElementConfig) => {
+      if (!config.postProcessing) { return result; }
+      result[config.key] = config.postProcessing(this.formGroup, config);
+      return result;
+    }, value);
+    this.onSubmit.emit(res);
   }
 }
