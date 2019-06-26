@@ -15,7 +15,7 @@ export class BaseFormElementComponent implements OnDestroy {
 
   id = uuid();
 
-  private unsubscribe$: Subject<void> = new Subject();
+  protected unsubscribe$: Subject<void> = new Subject();
   constructor() { }
 
   ngOnDestroy(): void {

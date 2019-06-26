@@ -35,7 +35,9 @@ const COMPONENTS = [
   ],
   exports: [
     NgxFormsterComponent,
+    NgxFormsterDirective,
     NgxFormsterErrorMessageComponent,
+    FormGroupComponent,
   ],
   providers: [
     NgxFormsterComponentFactoryService,

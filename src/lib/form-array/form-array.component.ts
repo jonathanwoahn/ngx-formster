@@ -20,6 +20,9 @@ export class FormArrayComponent extends BaseFormElementComponent {
 
   removeField(index: number): void {
     (this.formGroup.controls[this.config.key] as FormArray).removeAt(index);
+    if (this.options.onRemove) {
+      this.options.onRemove(this.formGroup, this.config);
+    }
   }
 
   get formArray(): FormGroup[] {

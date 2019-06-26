@@ -12,7 +12,7 @@ import { FormGroup } from '@angular/forms';
         *ngFor="let item of config$ | async"
         [formGroup]="formGroup"
         [config]="item">
-      </ng-template>
+        </ng-template>
       <ng-content></ng-content>
     </form>
   `,
@@ -36,3 +36,11 @@ export class NgxFormsterComponent {
     this.onSubmit.emit(res);
   }
 }
+
+// <ng-template
+// ngxFormster
+//   * ngFor="let item of config$ | async"
+//   [formGroup] = "formGroup"
+//   [config] = "item" >
+//   </ng-template>
+//   < ng - content > </ng-content>

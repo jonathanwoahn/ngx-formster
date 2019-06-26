@@ -1,6 +1,6 @@
 import { takeUntil } from 'rxjs/operators';
 import { NgxFormsterComponentFactoryService } from './ngx-formster-component-factory.service';
-import { Directive, Input, OnInit, ElementRef, ComponentFactoryResolver, ViewContainerRef, ComponentRef, OnDestroy } from '@angular/core';
+import { Directive, Input, OnInit, ComponentFactoryResolver, ViewContainerRef, ComponentRef, OnDestroy } from '@angular/core';
 import { NgxFormsterElementConfig } from './ngx-formster-models';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { BaseFormElementComponent } from './base-form-element/base-form-element.component';
@@ -64,7 +64,10 @@ export class NgxFormsterDirective implements OnInit, OnDestroy {
         return new FormGroup({});
       case ('formArray'):
         const array = new FormArray([]);
-        array.push(new FormGroup({}));
+        const count = (config.value || []).length;
+        for (let i = 0; i < count; i += 1) {
+          array.push(new FormGroup({}));
+        }
         return array;
       default:
         return new FormControl(config.value, config.validation);

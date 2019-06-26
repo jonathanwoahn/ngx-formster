@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 
 export const NGX_FORMSTER = new InjectionToken <NgxFormsterComponentProvider[]>('NGX_FORMSTER');
 export type NgxFormsterTypes = 'formGroup' | 'formArray' | 'input' | 'switch'
-  | 'select' | 'range' | 'radio' | 'checkbox' | 'textarea' | 'autocomplete' | 'constant';
+  | 'select' | 'range' | 'radio' | 'checkbox' | 'textarea' | 'autocomplete' | 'constant'
+  | 'chips';
 export class NgxFormsterComponentProvider {
   protected library: ComponentLibrary[] = [];
 
@@ -40,6 +41,10 @@ export interface NgxFormsterElementBase {
   postProcessing?: (formGroup: FormGroup, config: NgxFormsterElementBase) => any;
 }
 
+export interface NgxFormsterConstantConfig extends NgxFormsterElementBase {
+  type: 'constant';
+}
+
 export interface NgxFormsterFormGroupConfig extends NgxFormsterElementBase {
   type: 'formGroup';
   fields: NgxFormsterElementConfig[];
@@ -56,6 +61,7 @@ export interface NgxFormsterFormArrayConfig extends NgxFormsterElementBase {
   options?: {
     label?: string;
     class?: string;
+    onRemove?: (formGroup: FormGroup, control: NgxFormsterElementConfig) => void;
   };
 }
 
@@ -75,6 +81,9 @@ export interface NgxFormsterFormTextareaConfig extends NgxFormsterElementBase {
   options?: {
     label?: string;
     placeholder?: string;
+    maxRows?: number;
+    minRows?: number;
+    autoresize?: boolean;
   };
 }
 
@@ -105,10 +114,27 @@ export interface NgxFormsterFormSelectConfig extends NgxFormsterElementBase {
   };
 }
 
+export interface NgxFormsterFormChipsConfig extends NgxFormsterElementBase {
+  type: 'chips';
+  options: {
+    placeholder?: string;
+    options$: Observable<any[]>;
+    valueProp: string;
+    labelProp: string;
+    addOnBlur?: boolean;
+    removable?: boolean;
+    selectable?: boolean;
+    maxChips?: number;
+    maxChipsSuffix?: string;
+    onRemove?: (value: object, formGroup: FormGroup, config: NgxFormsterElementConfig) => any;
+  };
+}
+
 export interface NgxFormsterFormAutocompleteConfig extends NgxFormsterElementBase {
   type: 'autocomplete';
   options?: {
     label?: string;
+    placeholder?: string;
     prefixIcon?: string;
     /**
      * Limit on number of autocomplete results to display
@@ -119,6 +145,8 @@ export interface NgxFormsterFormAutocompleteConfig extends NgxFormsterElementBas
      */
     minLength?: number;
     options$: Observable<any[]>;
+    valueProp: string;
+    labelProp: string;
   };
 }
 
@@ -131,4 +159,6 @@ export type NgxFormsterElementConfig =
   | NgxFormsterFormSelectConfig
   | NgxFormsterFormTextareaConfig
   | NgxFormsterFormAutocompleteConfig
+  | NgxFormsterConstantConfig
+  | NgxFormsterFormChipsConfig
 ;
