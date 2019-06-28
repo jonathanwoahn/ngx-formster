@@ -26,3 +26,4 @@ export class BaseFormElementComponent implements OnDestroy {
     return (this.config || {} as any).options ? (this.config || {} as any).options : {};
   }
 }
+  
