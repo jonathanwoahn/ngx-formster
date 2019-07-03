@@ -5,9 +5,13 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'form-group',
+  styles: [`
+    :host {
+      width: 100%;
+    }
+  `],
   template: `
-    <span [innerHtml]="options.label" *ngIf="options.label"> </span>
-    <div [formGroup]="formGroup" [ngClass]="options.class" fxLayout="row">
+    <div [formGroup]="formGroup" [ngClass]="options.class" fxLayout="row" fxLayoutAlign="space-around center">
       <ng-template
         ngxFormster
         *ngFor="let item of config.fields"

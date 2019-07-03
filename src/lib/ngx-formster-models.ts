@@ -34,6 +34,7 @@ export interface NgxFormsterElementBase {
   key: string;
   validation?: ValidatorFn[];
   value?: any;
+  disabled?: boolean;
   /**
    * Function that allows for logic to determine when / if the field should be displayed
    */

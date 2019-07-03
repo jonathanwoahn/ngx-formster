@@ -11,6 +11,7 @@ import { NgxFormsterComponentFactoryService } from './ngx-formster-component-fac
 import { NgxFormsterErrorMessageComponent } from './ngx-formster-error-message/ngx-formster-error-message.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormConstantComponent } from './form-constant/form-constant.component';
+import { FlexModule } from '@angular/flex-layout';
 
 const COMPONENTS = [
   FormArrayComponent,
@@ -32,6 +33,7 @@ const COMPONENTS = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FlexModule,
   ],
   exports: [
     NgxFormsterComponent,

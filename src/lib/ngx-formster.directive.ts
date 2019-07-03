@@ -5,6 +5,7 @@ import { NgxFormsterElementConfig } from './ngx-formster-models';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { BaseFormElementComponent } from './base-form-element/base-form-element.component';
 import { Subject } from 'rxjs';
+import { ConfigModule } from 'src/app/config/config.module';
 
 @Directive({ selector: '[ngxFormster]' })
 export class NgxFormsterDirective implements OnInit, OnDestroy {
@@ -70,7 +71,11 @@ export class NgxFormsterDirective implements OnInit, OnDestroy {
         }
         return array;
       default:
-        return new FormControl(config.value, config.validation);
+        const control = new FormControl(config.value, config.validation);
+        if (config.disabled) {
+          control.disable();
+        }
+        return control;
     }
   }
 }
