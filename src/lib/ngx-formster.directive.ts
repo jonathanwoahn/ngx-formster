@@ -5,7 +5,6 @@ import { NgxFormsterElementConfig } from './ngx-formster-models';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { BaseFormElementComponent } from './base-form-element/base-form-element.component';
 import { Subject } from 'rxjs';
-import { ConfigModule } from 'src/app/config/config.module';
 
 @Directive({ selector: '[ngxFormster]' })
 export class NgxFormsterDirective implements OnInit, OnDestroy {
@@ -56,7 +55,11 @@ export class NgxFormsterDirective implements OnInit, OnDestroy {
     this.componentRef = this.viewContainerRef.createComponent(componentFactory);
 
     (this.componentRef.instance as BaseFormElementComponent).config = this.config;
-    (this.componentRef.instance as BaseFormElementComponent).formGroup = this.formGroup;
+    if (this.config.type === 'formGroup') {
+      (this.componentRef.instance as BaseFormElementComponent).formGroup = this.formGroup.get(this.config.key) as FormGroup;
+    } else {
+      (this.componentRef.instance as BaseFormElementComponent).formGroup = this.formGroup;
+    }
   }
 
   private getControl(config: NgxFormsterElementConfig) {

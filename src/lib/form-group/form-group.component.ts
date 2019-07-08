@@ -25,6 +25,7 @@ export class FormGroupComponent extends BaseFormElementComponent {
   config: NgxFormsterFormGroupConfig;
 
   getConfig(config: NgxFormsterElementConfig): NgxFormsterElementConfig {
+    // console.log(config, this.formGroup);
     return {
       ...config,
       value: (this.config.value || {} as any)[config.key],

@@ -28,6 +28,7 @@ export class NgxFormsterComponent {
 
   submit(): void {
     const value = this.formGroup.value;
+    console.log(value);
     const res = this.config$.getValue().reduce((result: object, config: NgxFormsterElementConfig) => {
       if (!config.postProcessing) { return result; }
       result[config.key] = config.postProcessing(this.formGroup, config);
