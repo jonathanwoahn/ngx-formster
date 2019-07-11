@@ -21,27 +21,28 @@ import { FormGroup } from '@angular/forms';
 export class NgxFormsterComponent {
   @Input() set config(value: NgxFormsterElementConfig[]) { this.config$.next(value); }
   @Input() formGroup: FormGroup = new FormGroup({});
+  @Input() callback: Function;
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onSubmit = new EventEmitter();
 
   config$: BehaviorSubject<NgxFormsterElementConfig[]> = new BehaviorSubject([]);
 
+  clearResults(): void {
+    Object.keys(this.formGroup.controls).forEach((key: string) => this.formGroup.removeControl(key));
+    this.config$.next([]);
+  }
+
   submit(): void {
+    const res = this.processResults();
+    this.onSubmit.emit(res);
+  }
+
+  processResults(): object {
     const value = this.formGroup.value;
-    console.log(value);
-    const res = this.config$.getValue().reduce((result: object, config: NgxFormsterElementConfig) => {
+    return this.config$.getValue().reduce((result: object, config: NgxFormsterElementConfig) => {
       if (!config.postProcessing) { return result; }
       result[config.key] = config.postProcessing(this.formGroup, config);
       return result;
     }, value);
-    this.onSubmit.emit(res);
   }
 }
-
-// <ng-template
-// ngxFormster
-//   * ngFor="let item of config$ | async"
-//   [formGroup] = "formGroup"
-//   [config] = "item" >
-//   </ng-template>
-//   < ng - content > </ng-content>
